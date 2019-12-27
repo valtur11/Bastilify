@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const productSchema = new mongoose.Schema({
   id: {
@@ -19,23 +19,27 @@ const productSchema = new mongoose.Schema({
     required: true
   },
   itemFullDescription: {
-    //here to apply category template(for keys) + their values from models/category.js
+    // here to apply category template(for keys) + their values from models/category.js
     type: String,
     required: true
   },
- 
-  //Note:  isAvailable, itemImagesUrl, promoLabels, promoPrice, SEO_title, SEO_Description and keywords are NOT required;
+  link: {
+    type: String,
+    required: true
+  },
+
+  // Note:  isAvailable, itemImagesUrl, promoLabels, promoPrice, SEO_title, SEO_Description and keywords are NOT required
   isAvailable: {
     type: Boolean,
-    default: true,
+    default: true
   },
-  itemImagesUrl: {
+  linkImage: {
     type: Array,
     default: ['NoImagePicture']
   },
   promoLabels: {
     type: String,
-    default: 'none' 
+    default: 'none'
   },
   promoPrice: {
     type: Number
@@ -49,13 +53,13 @@ const productSchema = new mongoose.Schema({
   keywords: {
     type: String
   },
-  //only for admins
+  // only for admins
   quantity: {
     type: Number,
     required: true
   }
-  //add here future fields like views(popularity), sells(a number of all sales), avalaiblity of diferent places, etc.
-});
+  // add here future fields like views(popularity), sells(a number of all sales), avalaiblity of diferent places, etc.
+})
 
-const Product = mongoose.model('Product', productSchema);
-module.exports = Product;
+const Product = mongoose.model('Product', productSchema)
+module.exports = Product
