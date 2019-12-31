@@ -6,52 +6,64 @@ const productSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  name: {
-    type: String,
-    required: true
-  },
   price: {
-    type: Number,
-    required: true
+    value: { type: Number, required: true },
+    currency: { type: String, default: 'USD', required: true }
   },
-  itemShortDescription: {
+  targetCountry: {
     type: String,
-    required: true
+    default: 'Bulgaria'
   },
-  itemFullDescription: {
-    // here to apply category template(for keys) + their values from models/category.js
-    type: String,
-    required: true
-  },
+  specs: { type: mongoose.ObjectId, ref: 'Category' },
+  content: [{
+    lang: {
+      type: String,
+      default: 'en'
+    },
+    title: {
+      type: String,
+      required: true
+    },
+    SEO_title: {
+      type: String
+    },
+    SEO_Description: {
+      type: String
+    },
+    keywords: {
+      type: String
+    },
+    shortDescription: {
+      type: String,
+      required: true
+    },
+    fullDescription: {
+      // here to apply category template(for keys) + their values from models/category.js
+      type: String,
+      required: true
+    }
+  }],
   link: {
     type: String,
     required: true
   },
+  source: {
+    type: String,
+    required: true
+  },
 
-  // Note:  isAvailable, itemImagesUrl, promoLabels, promoPrice, SEO_title, SEO_Description and keywords are NOT required
+  // Note:  isAvailable, condition, imageLink, promoLabels, promoPrice, SEO_title, SEO_Description and keywords are NOT required
   isAvailable: {
     type: Boolean,
     default: true
   },
-  linkImage: {
+  condition: {
+    type: String,
+    default: 'New'
+  },
+  imageLink: {
     type: Array,
     default: ['NoImagePicture']
-  },
-  promoLabels: {
-    type: String,
-    default: 'none'
-  },
-  promoPrice: {
-    type: Number
-  },
-  SEO_title: {
-    type: String
-  },
-  SEO_Description: {
-    type: String
-  },
-  keywords: {
-    type: String
   },
   // only for admins
   quantity: {

@@ -11,3 +11,4 @@ mongoose.connection.on('error', err => {
   console.log(err)
 })
 module.exports.Product = require('./product')
+module.exports.Category = require('./category')
