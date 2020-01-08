@@ -1,20 +1,20 @@
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-const productSchema = new mongoose.Schema({
-  id: {
-    type: String,
-    required: true,
-    unique: true
+const productSchema = Schema({
+  _id: {
+    type: Schema.Types.ObjectId
   },
   price: {
     value: { type: Number, required: true },
-    currency: { type: String, default: 'USD', required: true }
+    currency: { type: String, default: 'USD' }
   },
   targetCountry: {
     type: String,
     default: 'Bulgaria'
   },
-  specs: { type: mongoose.ObjectId, ref: 'Category' },
+  category: { type: Schema.Types.ObjectId, ref: 'Category', required: true },
+  specs: { type: Map, of: String },
   content: [{
     lang: {
       type: String,
@@ -44,24 +44,27 @@ const productSchema = new mongoose.Schema({
     }
   }],
   link: {
-    type: String,
-    required: true
+    type: String
   },
   source: {
     type: String,
-    required: true
+    default: 'api'
   },
 
-  // Note:  isAvailable, condition, imageLink, promoLabels, promoPrice, SEO_title, SEO_Description and keywords are NOT required
+  // Note:  NOT required
   isAvailable: {
     type: Boolean,
     default: true
+  },
+  isVisible: {
+    type: Boolean,
+    default: false
   },
   condition: {
     type: String,
     default: 'New'
   },
-  imageLink: {
+  imageLinks: {
     type: Array,
     default: ['NoImagePicture']
   },
@@ -70,7 +73,16 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true
   }
-  // add here future fields like views(popularity), sells(a number of all sales), avalaiblity of diferent places, etc.
+  // add here future fields like views(popularity), sales(a number of all sales), avalaiblity of diferent places, etc.
+})
+
+productSchema.pre('save', async function (next) {
+  try {
+    this._id = new mongoose.Types.ObjectId()
+    this.link = `/${this.id}`
+  } catch (err) {
+    return next(err)
+  }
 })
 
 const Product = mongoose.model('Product', productSchema)

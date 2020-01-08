@@ -1,5 +1,7 @@
 const { retrieveProducts, createProduct } = require('../../core/Products')
 
+// r is result
+
 async function getProducts (req, res, next) {
   try {
     const r = await retrieveProducts()
@@ -10,7 +12,7 @@ async function getProducts (req, res, next) {
 }
 
 const newProduct = async (req, res, next) => {
-  // only for test; this POST must have middleware before this
+  // only for test; this POST must have middleware before this to ensure the user is logged in admin
   try {
     const r = await createProduct(req.body)
     res.json(r)

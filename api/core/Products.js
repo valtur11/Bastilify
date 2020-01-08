@@ -2,7 +2,7 @@ const db = require('../models/db')
 
 async function retrieveProducts (filter = {}) {
   try {
-    const res = await db.Product.find(filter)
+    const res = await db.Product.find(filter).populate('category')
     return res
   } catch (err) {
     return err
@@ -19,19 +19,18 @@ async function retrieveProducts (filter = {}) {
 } */
 
 async function createProduct (item) {
-  // only test whether works. this code must be in controllers folder and .post must have middleware before this
-  const res = await db.Product.create({
-    price: item.price || 1,
+  const product = await db.Product.create({
+    price: { value: item.price || 2 },
+    category: item.categoryId, // frontend sends category id
     quantity: item.quantity || 1,
-    id: item.id || new Date().getMilliseconds(),
-    name: item.name || 'Example',
-    itemShortDescription: item.itemShortDescription || 'Amazing product',
-    itemFullDescription: item.itemFullDescription || 'Our product has all the features you need! 4567890 Customers already purchased this item. You, yes You, can take part in this unbeliviable amount of our people!'
-  }, (err, data) => {
-    if (err) throw err
-    return data
+    content: [{
+      title: item.name || 'Example',
+      shortDescription: item.itemShortDescription || 'Amazing product',
+      fullDescription: item.itemFullDescription || 'No description'
+    }]
   })
-  return res
+  const foundProduct = await db.Product.findById(product._id).populate('category')
+  return foundProduct
 }
 /*
 async function updateProduct
