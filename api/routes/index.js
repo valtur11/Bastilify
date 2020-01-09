@@ -3,7 +3,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const apiRouter = express.Router()
 const { getProducts, newProduct } = require('./controllers/product')
-const { getCategories, newCategory, deleteCategory } = require('./controllers/category')
+const { getCategories, newCategory, updateCategory, deleteCategory } = require('./controllers/category')
 const rateLimit = require('express-rate-limit')({ max: 10 })
 const errorHandler = require('./controllers/errorHandler')
 // Allow this server to all origins
@@ -26,10 +26,10 @@ apiRouter
 apiRouter.route('/categories') // (admin)
   .get(getCategories)
   .post(newCategory)
-  // .route() it throws typo
+  // .route() throws typo err
 
 apiRouter.route('/categories/:_id')
-  // .put(updateCategory)
+  .put(updateCategory)
   .delete(deleteCategory)
 
 apiRouter.use((req, res, next) => {

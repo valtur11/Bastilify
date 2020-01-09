@@ -28,11 +28,22 @@ async function newCategory (req, res, next) {
   }
 }
 
+async function updateCategory (req, res, next) {
+  try {
+    const r = await (async function () {
+      await db.Category.updateOne({ _id: req.params._id }, req.body)
+      const foundCategory = await db.Category.findById(req.params._id)
+      return foundCategory
+    })()
+    res.json(r)
+  } catch (err) {
+    return next(err)
+  }
+}
+
 async function deleteCategory (req, res, next) {
   try {
     const r = await (async function () {
-      console.log(req.params._id)
-      // doesn't findById
       const foundCategory = await db.Category.findById(req.params._id)
       await foundCategory.remove()
       return foundCategory
@@ -43,4 +54,4 @@ async function deleteCategory (req, res, next) {
   }
 }
 
-module.exports = { getCategories, newCategory, deleteCategory }
+module.exports = { getCategories, newCategory, updateCategory, deleteCategory }
