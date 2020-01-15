@@ -2,7 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import 'bootstrap/dist/css/bootstrap.css';
 import * as serviceWorker from './serviceWorker';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+library.add(fab, faPhone);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
