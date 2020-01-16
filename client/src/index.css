@@ -47,7 +47,13 @@ li .fa{
   z-index: 1;
 }
 @media only screen and (max-width: 1200px) {
-  .container {
+  .container, .top_header, .overlay {
     display: none;
   }
+}
+.header {
+	border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+.header-gradient {
+	background: rgba(0,0,0,0.7);                                                              
 }
