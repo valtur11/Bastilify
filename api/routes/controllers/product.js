@@ -1,4 +1,4 @@
-const { retrieveProducts, createProduct } = require('../../core/Products')
+const { retrieveProducts, createProduct, changeProduct, removeProduct } = require('../../core/Products')
 
 // r is result
 
@@ -21,4 +21,24 @@ const newProduct = async (req, res, next) => {
   }
 }
 
-module.exports = { getProducts, newProduct }
+const updateProduct = async (req, res, next) => {
+  try {
+    req.body._id = req.params.id
+    const r = await changeProduct(req.body)
+    res.json(r)
+  } catch (err) {
+    return next(err)
+  }
+}
+
+const deleteProduct = async (req, res, next) => {
+  try {
+    req.body._id = req.params.id
+    console.log(req.body)
+    const r = await removeProduct(req.body)
+    res.json(r)
+  } catch (err) {
+    return next(err)
+  }
+}
+module.exports = { getProducts, newProduct, updateProduct, deleteProduct }
