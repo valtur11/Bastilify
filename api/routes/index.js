@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const apiRouter = express.Router()
-const { getProducts, newProduct } = require('./controllers/product')
+const { getProducts, newProduct, updateProduct, deleteProduct } = require('./controllers/product')
 const { getCategories, newCategory, updateCategory, deleteCategory } = require('./controllers/category')
 const rateLimit = require('express-rate-limit')({ max: 10 })
 const errorHandler = require('./controllers/errorHandler')
@@ -16,12 +16,11 @@ apiRouter
   .route('/products')
   .get(rateLimit, getProducts) // Get list of products with given filter, empty by default
   .post(newProduct) // Creates new Product (admin) Add Authorization and rate limit middleware
-  // .route('/:id')
-  /*
-    .get(getProduct) //Get specific product
-    .put(updateProduct) // (admin)
-    .delete(deleteProduct) // (admin)
-  */
+
+apiRouter
+  .route('/products/:id')
+  .put(updateProduct) // (admin)
+  .delete(deleteProduct) // (admin)
 
 apiRouter.route('/categories') // (admin)
   .get(getCategories)

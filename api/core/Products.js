@@ -32,9 +32,17 @@ async function createProduct (item) {
   const foundProduct = await db.Product.findById(product._id).populate('category')
   return foundProduct
 }
-/*
-async function updateProduct
-async function removeProduct
-*/
 
-module.exports = { retrieveProducts, createProduct }
+async function changeProduct (obj) {
+  await db.Product.updateOne({ _id: obj._id }, obj)
+  const foundProduct = await db.Category.findById(obj._id)
+  return foundProduct
+}
+
+async function removeProduct (obj) {
+  const foundProduct = await db.Product.findById(obj._id)
+  foundProduct.remove()
+  return foundProduct
+}
+
+module.exports = { retrieveProducts, createProduct, changeProduct, removeProduct }
