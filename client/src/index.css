@@ -11,13 +11,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.navbar {
-  width: 100%;
-}
-.social {
-  justify-content: flex-end;
-  margin-right: -20px;
-}
 .top_header ul li{
   margin-right:10px;
   text-decoration:none;
@@ -62,4 +55,12 @@ li .fa{
 }
 .header-gradient {
 	background: rgba(0,0,0,0.7);                                                              
+}
+.footer{
+  background: rgb(76,76,76); 
+  text-align: center; 
+  height: 40px;
+}
+.final-p{
+  color:#beae64;
 }

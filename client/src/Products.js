@@ -12,11 +12,10 @@ export const products = [
     {
       name: 'MacBook Air (2019)',
       desc: `Apple's entry-level laptop will appeal
-      to computers. Apple adherents, and anyone
-      who's willing to pay for supreme built quality.`,
+      to computers.`,
       price: 1100,
       img:
-        'https://www.digital.bg/f/logo/834/860_7961662b2989a4af11b1047c493f4077.jpg',
+        'https://www.citytel.bg/uploads/com_article/gallery/2a5265cfb6679d3fedd40f39705ef51dc1380a69.jpg',
       id: 101
     }
   ]

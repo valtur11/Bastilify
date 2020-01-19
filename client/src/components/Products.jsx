@@ -19,6 +19,7 @@ const Products = ({ products, selectProduct, history }) => {
       </section>
       <img src={prod.img} alt={prod.name} />
     </div>
+
   ))
 }
 

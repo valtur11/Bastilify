@@ -6,6 +6,7 @@ import Checkout from './Checkout.jsx'
 import { products } from '../products'
 import Navbar from '../Navbar'
 import ContainerTop from '../ContainerTop'
+import Footer from '../Footer'
 
 const history = createBrowserHistory()
 
@@ -39,6 +40,7 @@ const App = () => {
         />
       </Switch>
     </Router>
+    <Footer />
     </div>
   )
 }
