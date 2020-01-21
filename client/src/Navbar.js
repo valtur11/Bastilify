@@ -43,8 +43,8 @@ class Navbar extends React.Component {
     render(){
         return(
             <header className="header header-gradient">
-        <nav className="navbar navbar-expand-lg navbar-dark">
-          <a className="navbar-brand" style={{fontFamily: 'Courgette, cursive'}}>{this.props.brand}</a>
+              <nav className="navbar navbar-expand-lg navbar-dark">
+              <a className="navbar-brand" style={{fontFamily: 'Courgette, cursive'}}>{this.props.brand}</a>
 
           <button
             className="navbar-toggler custom-toggler"

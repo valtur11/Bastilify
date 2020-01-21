@@ -16,9 +16,9 @@ const App = () => {
   return (
     <div>
     <ContainerTop />
-        <React.Fragment>
-        <Navbar brand="Bastilify" />
-        </React.Fragment>
+    <React.Fragment>
+      <Navbar brand="Bastilify" />
+    </React.Fragment>
     <Router history={history}>
       <Switch>
         <Route

@@ -1,5 +1,6 @@
 import React from 'react'
 import './Products.scss'
+import './responsive.css'
 
 const Products = ({ products, selectProduct, history }) => {
   const handlePurchase = prod => () => {

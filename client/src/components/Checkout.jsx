@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { StripeProvider, Elements } from 'react-stripe-elements'
-import CheckoutForm from './CheckoutForm'
+import CheckoutForm from './CheckoutForm.jsx'
 
 const Checkout = ({ selectedProduct, history }) => {
   useEffect(() => {
