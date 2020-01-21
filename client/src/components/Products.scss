@@ -17,12 +17,13 @@ html,
 
 .product {
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 50% 50%;
   grid-template-areas: 'desc image';
   align-items: center;
   padding: 5%;
   margin: 1em auto;
   width: 80%;
+  height: 350px;
   max-width: 600px;
   background-color: #fff;
   border-radius: 8px;
@@ -52,4 +53,12 @@ html,
     height: 175px;
     width: 175px;
   }
+}
+
+.product-positioning{
+  display: inline-block;
+  text-align: center;
+  justify-content: space-between;
+  margin: auto;
+  
 }

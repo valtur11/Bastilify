@@ -17,5 +17,25 @@ export const products = [
       img:
         'https://www.citytel.bg/uploads/com_article/gallery/2a5265cfb6679d3fedd40f39705ef51dc1380a69.jpg',
       id: 101
-    }
+    },
+    /*
+    {
+      name: 'Acer Aspire 5 (2019)',
+      desc: `The Acer Aspire 5 features strong Core i3 performance,
+       a bright, 1080 display and 
+       long battery life.`,
+      price: 400,
+      img:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT2wrKilKXA-b6ztu8RbsV7FqnIHBSBjppcW_zdgA3hgiuipVV&s',
+      id: 101
+    },
+    {
+      name: 'Asus Chromebook C434',
+      desc: `Asus Chromebook Flip C434 is one of the best Chromebooks.`,
+      price: 475,
+      img:
+        'https://www.adorama.com/images/Large/asc434tdsm4t.jpg',
+      id: 101
+    },
+    */
   ]
