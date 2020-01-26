@@ -43,8 +43,8 @@ class Navbar extends React.Component {
     render(){
         return(
             <header className="header header-gradient">
-        <nav className="navbar navbar-expand-lg navbar-dark">
-          <a className="navbar-brand" href="#">{this.props.brand}</a>
+              <nav className="navbar navbar-expand-lg navbar-dark">
+              <a className="navbar-brand" style={{fontFamily: 'Courgette, cursive'}}>{this.props.brand}</a>
 
           <button
             className="navbar-toggler custom-toggler"
@@ -54,8 +54,7 @@ class Navbar extends React.Component {
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
-            onClick={this.toggleCollapse}
-          >
+            onClick={this.toggleCollapse}>
               <span className="navbar-toggler-icon"></span>
           </button>
 
