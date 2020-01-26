@@ -1,5 +1,9 @@
 const db = require('../models/db')
 
+/**
+ * Retrieves all products with given filter from the db
+ * @param {*} filter filter products results
+ */
 async function retrieveProducts (filter = {}) {
   try {
     const res = await db.Product.find(filter).populate('category')
@@ -18,6 +22,10 @@ async function retrieveProducts (filter = {}) {
   }
 } */
 
+/**
+ * Creates new document
+ * @param {*} item product object
+ */
 async function createProduct (item) {
   const product = await db.Product.create({
     price: { value: item.price || 2 },
@@ -33,12 +41,20 @@ async function createProduct (item) {
   return foundProduct
 }
 
+/**
+ * Changes product
+ * @param {*} obj product object
+ */
 async function changeProduct (obj) {
   await db.Product.updateOne({ _id: obj._id }, obj)
   const foundProduct = await db.Category.findById(obj._id)
   return foundProduct
 }
 
+/**
+ * Removes product
+ * @param {*} obj product object with the id
+ */
 async function removeProduct (obj) {
   const foundProduct = await db.Product.findById(obj._id)
   foundProduct.remove()

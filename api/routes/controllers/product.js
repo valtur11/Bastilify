@@ -1,7 +1,15 @@
 const { retrieveProducts, createProduct, changeProduct, removeProduct } = require('../../core/Products')
 
-// r is result
-
+/**
+ * Gets array of product objects from core
+ * @param {*} req express request object
+ * @param {*} res express response object
+ * @param {*} next express next middleware object
+ * @prop req.body.limit limitation based on the given role
+ * @prop r response data
+ * @todo apply users, limit and filter response based on roles
+ * @returns {Object} if no err then it returns the retrieved data
+ */
 async function getProducts (req, res, next) {
   try {
     const r = await retrieveProducts()
@@ -11,8 +19,15 @@ async function getProducts (req, res, next) {
   }
 }
 
+/**
+ * Creates new product with given params
+ * @param {*} req express default
+ * @param {*} res express default
+ * @param {*} next express default
+ * @todo this POST must have middleware before this to ensure the user is logged in admin
+ * @returns {Object} if no err then it returns the new data
+ */
 const newProduct = async (req, res, next) => {
-  // only for test; this POST must have middleware before this to ensure the user is logged in admin
   try {
     const r = await createProduct(req.body)
     res.json(r)
@@ -21,6 +36,15 @@ const newProduct = async (req, res, next) => {
   }
 }
 
+/**
+ * Changes product with given object parameters
+ * @param {*} req express default
+ * @param {*} res express default
+ * @param {*} next express default
+ * @prop req.body change object
+ * @prop req.body._id id of changed object
+ * @returns {Object} if no err then it returns the new data
+ */
 const updateProduct = async (req, res, next) => {
   try {
     req.body._id = req.params.id
@@ -31,6 +55,15 @@ const updateProduct = async (req, res, next) => {
   }
 }
 
+/**
+ * Removes product with given id
+ * @param {*} req express default
+ * @param {*} res express default
+ * @param {*} next express default
+ * @prop req.body request object with id
+ * @prop req.body._id id of changed object
+ * @returns {Object} if no err then it returns the removed data
+ */
 const deleteProduct = async (req, res, next) => {
   try {
     req.body._id = req.params.id
@@ -41,4 +74,5 @@ const deleteProduct = async (req, res, next) => {
     return next(err)
   }
 }
+
 module.exports = { getProducts, newProduct, updateProduct, deleteProduct }
