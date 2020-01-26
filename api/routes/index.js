@@ -2,9 +2,10 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const apiRouter = express.Router()
+// const loginRequired = require('./controllers/auth')
 const { getProducts, newProduct, updateProduct, deleteProduct } = require('./controllers/product')
 const { getCategories, newCategory, updateCategory, deleteCategory } = require('./controllers/category')
-const rateLimit = require('express-rate-limit')({ max: 10 })
+// const rateLimit = require('express-rate-limit')({ max: 10 })
 const errorHandler = require('./controllers/errorHandler')
 // Allow this server to all origins
 apiRouter.use(cors()) // Warning: Cors MUST be enabled ONLY to whitelist array!!!
@@ -14,22 +15,22 @@ apiRouter.use(bodyParser.json())
 
 apiRouter
   .route('/products')
-  .get(rateLimit, getProducts) // Get list of products with given filter, empty by default
-  .post(newProduct) // Creates new Product (admin) Add Authorization and rate limit middleware
+  .get(getProducts) // Get list of products with given filter, empty by default
+  .post(/* loginRequired, */ newProduct) // Creates new Product (admin) Add Authorization and rate limit middleware
 
 apiRouter
   .route('/products/:id')
-  .put(updateProduct) // (admin)
-  .delete(deleteProduct) // (admin)
+  .put(/* loginRequired, */ updateProduct) // (admin)
+  .delete(/* loginRequired, */ deleteProduct) // (admin)
 
-apiRouter.route('/categories') // (admin)
+apiRouter.route('/categories')
   .get(getCategories)
-  .post(newCategory)
+  .post(/* loginRequired, */ newCategory) // (admin)
   // .route() throws typo err
 
 apiRouter.route('/categories/:_id')
-  .put(updateCategory)
-  .delete(deleteCategory)
+  .put(/* loginRequired, */ updateCategory)
+  .delete(/* loginRequired, */ deleteCategory)
 
 apiRouter.use((req, res, next) => {
   next({ status: 404, message: 'Not Found' })
