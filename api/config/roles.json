@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Guest",
+    "level": 0,
+    "actions": [
+        ["Get", "/api/products"],
+        ["Get", "/api/categories"],
+        ["Get", "/api/products/:id"]
+      ]
+  },
+  {
+    "name": "Customer",
+    "level": 1,
+    "actions": [
+        ["Get", "/api/products"],
+        ["Get", "/api/categories"],
+        ["Get", "/api/products/:id"]
+      ]
+  },
+  {
+    "name": "Admin",
+    "level": 2,
+    "actions": [
+        ["Get", "/api/products"],
+        ["Get", "/api/categories"],
+        ["Get", "/api/products/:id"]
+      ]
+  }
+]

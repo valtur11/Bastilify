@@ -1,11 +1,12 @@
 const db = require('../models/db')
-
+const debug = require('debug')('core:Products')
 /**
  * Retrieves all products with given filter from the db
  * @param {*} filter filter products results
  */
 async function retrieveProducts (filter = {}) {
   try {
+    debug('start')
     const res = await db.Product.find(filter).populate('category')
     return res
   } catch (err) {

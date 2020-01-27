@@ -1,5 +1,5 @@
 const { retrieveProducts, createProduct, changeProduct, removeProduct } = require('../../core/Products')
-
+const debug = require('debug')('products')
 /**
  * Gets array of product objects from core
  * @param {*} req express request object
@@ -13,6 +13,7 @@ const { retrieveProducts, createProduct, changeProduct, removeProduct } = requir
 async function getProducts (req, res, next) {
   try {
     const r = await retrieveProducts()
+    debug('done')
     return res.status(200).json(r)
   } catch (err) {
     return next(err)

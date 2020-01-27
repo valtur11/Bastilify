@@ -14,7 +14,7 @@ function errorHandler (err, req, res, next) {
     status: err.status
   }
   if (process.env.NODE_ENV === 'development') {
-    debug(err.stack)
+    if (err.stack) debug(err.stack)
     error.details = err.stack
   }
   return res.status(err.status || 500).json({
