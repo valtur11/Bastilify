@@ -5,25 +5,30 @@
     "actions": [
         ["Get", "/api/products"],
         ["Get", "/api/categories"],
-        ["Get", "/api/products/:id"]
+        ["Get", "/api/products/:id"],
+        ["Post", "/api/auth/signup"],
+        ["Post", "/api/auth/signin"]
       ]
   },
   {
     "name": "Customer",
     "level": 1,
     "actions": [
-        ["Get", "/api/products"],
-        ["Get", "/api/categories"],
-        ["Get", "/api/products/:id"]
+        ["Post", "/api/auth/logout"],
+        ["Post", "/api/order"],
+        ["Get", "/api/order"]
       ]
   },
   {
     "name": "Admin",
     "level": 2,
     "actions": [
-        ["Get", "/api/products"],
-        ["Get", "/api/categories"],
-        ["Get", "/api/products/:id"]
+        ["Post", "/api/products"],
+        ["Post", "/api/categories"],
+        ["Put", "/api/products/:id"],
+        ["Delete", "/api/products/:id"],
+        ["Put", "/api/categories/:id"],
+        ["Delete", "/api/categories/:id"]
       ]
   }
 ]

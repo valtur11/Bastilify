@@ -20,12 +20,13 @@ const getRole = function (req, res, next) {
         req.role = decoded.role
         next()
       } else {
+        // the token is not correct
         return next({ status: 401, message: 'Please Log In First' })
       }
     })
   } catch (e) {
     if (e.message === 'Guest') {
-      req.role = e.message
+      req.role = { name: e.message, level: 0 }
       return next()
     }
     return next(e)
@@ -50,18 +51,19 @@ const applyRoles = function (req, res, next) {
     fs.readFile('./config/roles.json', 'utf8', async (err, data) => {
       const d = JSON.parse(data)
       if (err) throw err
-      if (req.role === d[0].name) {
-        const len = d[0].actions.length
-        for (let i = 0; i < len; i++) {
-          if (d[0].actions[i][0].toUpperCase() === req.method && d[0].actions[i][1] === req.originalUrl) {
-            debug('ok')
-            next()
-            return
+      const foundRole = d.find(val => val.actions.find(action => action[0].toUpperCase() === req.method && action[1] === req.originalUrl) !== undefined)
+      if (foundRole) {
+        if (foundRole.level <= req.role.level) {
+          next()
+        } else {
+          debug('foundRole level is bigger than the req role level')
+          switch (req.role.name) {
+            case 'Guest': next({ status: 401, message: 'Please login first' }); break
+            default: next({ status: 403, message: 'Access denied' })
           }
         }
-        return next({ status: 401, message: 'Please login first' })
       } else {
-        debug('not guest')
+        return next({ status: 404, message: 'Not found' })
       }
     })
   } catch (e) {
