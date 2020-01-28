@@ -2,8 +2,7 @@ export const products = [
     {
       name: 'Dell XPS 13 (2019)',
       desc: `Portable, poweful, and beautiful, 
-      nothing offers the same value as Dell's
-      flagship XPS 13.`,
+      nothing offers the same value.`,
       price: 1750,
       img:
         'https://p.jarcomputers.com/680x680/9e/NBDELLDXPS9380I78565U16G512G4K_680x680.jpg',

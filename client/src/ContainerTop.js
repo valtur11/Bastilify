@@ -1,6 +1,8 @@
 import React from 'react'
+import { BrowserRouter as Router, Redirect } from 'react-router-dom'
 
 class ContainerTop extends React.Component {
+
     render() {
         return(
             <div className="container-fluid  top_header">
@@ -15,8 +17,11 @@ class ContainerTop extends React.Component {
                                 </ul>
                             </div>
                             <div className="col-md-5 col-xs-12 sign_log">
+                            
                                 <ul>
-                                    <li className="container-top-link"><a href="#">Log in</a></li>
+                                    <li>
+                                    <button>Log In</button>
+                                    </li>                                    
                                     <li>Country:<span>BG</span></li>                                   
                                 </ul>
                             </div>
