@@ -19,6 +19,10 @@ const userSchemа = Schema({
   },
   profileImgUrl: {
     type: String
+  },
+  role: {
+    name: { type: String, default: 'Customer' },
+    level: { type: Number, default: 1 }
   }
 })
 

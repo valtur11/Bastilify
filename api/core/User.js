@@ -1,7 +1,7 @@
 const db = require('../models/db')
 const debug = require('debug')('core:User')
 /**
- * Find user
+ * Find user by email
  * @param {*} obj search obj
  */
 async function findUser (obj) {

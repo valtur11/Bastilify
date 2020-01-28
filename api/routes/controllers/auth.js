@@ -15,13 +15,14 @@ async function signup (req, res, next) {
       debug('user is error')
       throw new Error(user.message)
     }
-    const { id, username, profileImgUrl } = user
+    const { id, username, profileImgUrl, email } = user
     debug(id, username, profileImgUrl)
     const token = jwt.sign(
       {
         id,
         username,
-        profileImgUrl
+        profileImgUrl,
+        email
       },
       process.env.JWT_SECRET
     )
@@ -29,6 +30,7 @@ async function signup (req, res, next) {
       id,
       username,
       profileImgUrl,
+      email,
       token
     })
   } catch (e) {
@@ -81,14 +83,15 @@ async function signin (req, res, next) {
  * @param {*} next express next middleware
  * @prop {String} req.headers.authorization jwt auth token if undefined it throws new Guest error
  */
-const getRole = function (req, res, next) {
+const getRole = async function (req, res, next) {
   try {
     if (req.headers.authorization === undefined) throw new Error('Guest')
     const token = req.headers.authorization.split(' ')[1]
     jwt.verify(token, process.env.SECRET_KEY, function (err, decoded) {
       if (err) throw err
       if (decoded) {
-        req.role = decoded.role
+        const foundRole = findUser({ email: decoded.email }).role
+        req.role = foundRole
         next()
       } else {
         // the token is not correct
