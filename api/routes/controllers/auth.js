@@ -2,6 +2,75 @@
 const jwt = require('jsonwebtoken')
 const fs = require('fs')
 const debug = require('debug')('auth')
+const { findUser, createUser } = require('../../core/User')
+
+/**
+* User register
+ * @name signup
+ */
+async function signup (req, res, next) {
+  try {
+    const user = await createUser(req.body)
+    const { id, username, profileImgUrl } = user
+    const token = jwt.sign(
+      {
+        id,
+        username,
+        profileImgUrl
+      },
+      process.env.JWT_SECRET
+    )
+    return res.status(201).json({
+      id,
+      username,
+      profileImgUrl,
+      token
+    })
+  } catch (e) {
+    if (e.code === 11000) {
+      e.message = 'Sorry, that username or email is taken'
+    }
+    return next({
+      status: 400,
+      message: e.message
+    })
+  }
+}
+
+/**
+ * User login
+ * @name signin
+ */
+async function signin (req, res, next) {
+  try {
+    const user = await findUser(req.body)
+    const { id, username, profileImgUrl } = user
+    const isMatch = 0
+    if (isMatch) {
+      const token = jwt.sign(
+        {
+          id,
+          username,
+          profileImgUrl
+        },
+        process.env.JWT_SECRET
+      )
+      return res.status(200).json({
+        id,
+        username,
+        profileImgUrl,
+        token
+      })
+    } else {
+      return next({
+        status: 400,
+        message: 'Invalid Email/Password.'
+      })
+    }
+  } catch (e) {
+    return next({ status: 400, message: 'Invalid Email/Password.' })
+  }
+}
 
 /**
  * Login required midddleware
@@ -71,4 +140,4 @@ const applyRoles = function (req, res, next) {
   }
 }
 
-module.exports = { getRole, applyRoles }
+module.exports = { signin, signup, getRole, applyRoles }
