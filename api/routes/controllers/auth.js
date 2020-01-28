@@ -11,7 +11,12 @@ const { findUser, createUser } = require('../../core/User')
 async function signup (req, res, next) {
   try {
     const user = await createUser(req.body)
+    if (user instanceof Error) {
+      debug('user is error')
+      throw new Error(user.message)
+    }
     const { id, username, profileImgUrl } = user
+    debug(id, username, profileImgUrl)
     const token = jwt.sign(
       {
         id,
@@ -27,9 +32,6 @@ async function signup (req, res, next) {
       token
     })
   } catch (e) {
-    if (e.code === 11000) {
-      e.message = 'Sorry, that username or email is taken'
-    }
     return next({
       status: 400,
       message: e.message
@@ -45,7 +47,7 @@ async function signin (req, res, next) {
   try {
     const user = await findUser(req.body)
     const { id, username, profileImgUrl } = user
-    const isMatch = 0
+    const isMatch = user.comparePassword(req.body.password)
     if (isMatch) {
       const token = jwt.sign(
         {

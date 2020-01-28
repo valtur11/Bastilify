@@ -26,6 +26,7 @@ async function retrieveProducts (filter = {}) {
 /**
  * Creates new document
  * @param {*} item product object
+ * @todo Write try catch block
  */
 async function createProduct (item) {
   const product = await db.Product.create({
@@ -45,6 +46,7 @@ async function createProduct (item) {
 /**
  * Changes product
  * @param {*} obj product object
+ * @todo Write try catch block
  */
 async function changeProduct (obj) {
   await db.Product.updateOne({ _id: obj._id }, obj)
@@ -55,6 +57,7 @@ async function changeProduct (obj) {
 /**
  * Removes product
  * @param {*} obj product object with the id
+ * @todo Write try catch block
  */
 async function removeProduct (obj) {
   const foundProduct = await db.Product.findById(obj._id)

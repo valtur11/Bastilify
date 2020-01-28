@@ -2,9 +2,10 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const apiRouter = express.Router()
-const { getRole, applyRoles } = require('./controllers/auth')
+const { signup, signin, getRole, applyRoles } = require('./controllers/auth')
 const { getProducts, newProduct, updateProduct, deleteProduct } = require('./controllers/product')
 const { getCategories, newCategory, updateCategory, deleteCategory } = require('./controllers/category')
+const debug = require('debug')('routes')
 // const rateLimit = require('express-rate-limit')({ max: 10 })
 const errorHandler = require('./controllers/errorHandler')
 // Allow this server to all origins
@@ -34,7 +35,11 @@ apiRouter.route('/categories/:_id')
   .put(updateCategory)
   .delete(deleteCategory)
 
+apiRouter.post('/auth/signup', signup)
+apiRouter.post('/auth/signin', signin)
+
 apiRouter.use((req, res, next) => {
+  debug('page not exists')
   next({ status: 404, message: 'Not Found' })
 })
 
