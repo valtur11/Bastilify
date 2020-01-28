@@ -48,14 +48,15 @@ async function signup (req, res, next) {
 async function signin (req, res, next) {
   try {
     const user = await findUser(req.body)
-    const { id, username, profileImgUrl } = user
+    const { id, username, profileImgUrl, email } = user
     const isMatch = user.comparePassword(req.body.password)
     if (isMatch) {
       const token = jwt.sign(
         {
           id,
           username,
-          profileImgUrl
+          profileImgUrl,
+          email
         },
         process.env.JWT_SECRET
       )
@@ -63,6 +64,7 @@ async function signin (req, res, next) {
         id,
         username,
         profileImgUrl,
+        email,
         token
       })
     } else {
