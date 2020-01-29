@@ -14,7 +14,6 @@
     "name": "Customer",
     "level": 1,
     "actions": [
-        ["Post", "/api/auth/logout"],
         ["Post", "/api/order"],
         ["Get", "/api/order"]
       ]
