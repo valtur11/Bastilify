@@ -6,8 +6,15 @@ const { signup, signin, getRole, applyRoles } = require('./controllers/auth')
 const { getProducts, newProduct, updateProduct, deleteProduct } = require('./controllers/product')
 const { getCategories, newCategory, updateCategory, deleteCategory } = require('./controllers/category')
 const debug = require('debug')('routes')
-// const rateLimit = require('express-rate-limit')({ max: 10 })
 const errorHandler = require('./controllers/errorHandler')
+/**
+ * All api routes
+ * @todo Install and use performance and security modules
+ * @todo set CORS whitelist array
+ * @todo add additional validation like email vertification
+ */
+// const rateLimit = require('express-rate-limit')({ max: 10 })
+
 // Allow this server to all origins
 apiRouter.use(cors()) // Warning: Cors MUST be enabled ONLY to whitelist array!!!
 

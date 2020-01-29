@@ -8,6 +8,11 @@ const userSchemа = Schema({
     required: true,
     unique: true
   },
+  /**
+   * Is this email verified
+   * @todo by default to be false, but then must sent email for vertification
+   */
+  verified_email: { type: Boolean, default: true },
   username: {
     type: String,
     required: true,
