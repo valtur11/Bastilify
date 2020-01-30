@@ -38,22 +38,22 @@ const orderSchema = Schema({
     user_agent: { type: String, required: true }
   },
   processing_method: { type: String, required: true },
-  payment_details: {
+  /* payment_details: {
     avs_result_code: { type: String, required: true },
     credit_card_bin: { type: String, required: true },
     cvv_result_code: { type: String, required: true },
     credit_card_number: { type: String, required: true },
     credit_card_company: { type: String, required: true }
-  },
+  }, */
   number: { type: Number, required: true }, // order number
   email: { type: String, required: true },
   phone: { type: String, required: true },
   financial_status: { default: 'no' },
   billing_address: { ...customAddressSchema },
   shipping_address: { ...customAddressSchema },
-  fulfillment_status: { type: String },
-  line_items: [{ type: Schema.Types.ObjectId, ref: 'Product', required: true }],
-  customer: { type: Schema.Types.ObjectId, ref: 'User', required: true }
+  fulfillment_status: { type: String } // ,
+  // line_items: [{ type: Schema.Types.ObjectId, ref: 'Product', required: true }],
+  // customer: { type: Schema.Types.ObjectId, ref: 'User', required: true }
 })
 
 const Order = mongoose.model('Order', orderSchema)

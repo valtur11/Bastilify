@@ -7,9 +7,11 @@ const debug = require('debug')('core:User')
 async function findUser (obj) {
   try {
     debug('findUser')
-    return db.User.findOne({
+    const res = await db.User.findOne({
       email: obj.email
     })
+    debug(res.email, res.role)
+    return res
   } catch (e) {
     return e
   }
