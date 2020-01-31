@@ -1,5 +1,4 @@
 import React from 'react'
-import { BrowserRouter as Router, Redirect } from 'react-router-dom'
 
 class ContainerTop extends React.Component {
 
@@ -19,9 +18,9 @@ class ContainerTop extends React.Component {
                             <div className="col-md-5 col-xs-12 sign_log">
                             
                                 <ul>
-                                    <li>
-                                    <button>Log In</button>
-                                    </li>                                    
+                                    
+                                    <li><a href="#">Log In</a></li>
+                                                                   
                                     <li>Country:<span>BG</span></li>                                   
                                 </ul>
                             </div>

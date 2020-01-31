@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Router, Route, Switch } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
-import Products from './Products.jsx'
-import Checkout from './Checkout.jsx'
+import Products from './Products'
+import Checkout from './Checkout'
 import { products } from '../products'
 import Navbar from '../Navbar'
 import ContainerTop from '../ContainerTop'
@@ -35,7 +35,10 @@ const App = () => {
         <Route
           path="/checkout"
           render={() => (
-            <Checkout selectedProduct={selectedProduct} history={history} />
+            <Checkout
+              selectedProduct={selectedProduct}
+              history={history}
+            />
           )}
         />
       </Switch>
