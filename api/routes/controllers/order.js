@@ -1,13 +1,15 @@
 const { createOrder, listOrders } = require('../../core/Order')
+const debug = require('debug')('controller:Order')
 
 async function newOrder (req, res, next) {
   try {
+    debug(req.headers)
     const obj = {
       ...req.body,
       client_details: {
         browser_ip: req.ip,
-        user_agent: req.headers['User-Agent'],
-        accept_language: req.headers['accept-language']
+        user_agent: req.headers['user-agent'],
+        accept_language: req.headers['accept-language'] || 'en'
       }
     }
     const r = await createOrder(obj)
