@@ -2,6 +2,81 @@
 const jwt = require('jsonwebtoken')
 const fs = require('fs')
 const debug = require('debug')('auth')
+const { findUser, createUser } = require('../../core/User')
+
+/**
+* User register
+ * @name signup
+ */
+async function signup (req, res, next) {
+  try {
+    const user = await createUser(req.body)
+    if (user instanceof Error) {
+      debug('user is error')
+      throw new Error(user.message)
+    }
+    const { id, username, profileImgUrl, email } = user
+    debug(id, username, profileImgUrl)
+    const token = jwt.sign(
+      {
+        id,
+        username,
+        profileImgUrl,
+        email
+      },
+      process.env.JWT_SECRET
+    )
+    return res.status(201).json({
+      id,
+      username,
+      profileImgUrl,
+      email,
+      token
+    })
+  } catch (e) {
+    return next({
+      status: 400,
+      message: e.message
+    })
+  }
+}
+
+/**
+ * User login
+ * @name signin
+ */
+async function signin (req, res, next) {
+  try {
+    const user = await findUser(req.body)
+    const { id, username, profileImgUrl, email } = user
+    const isMatch = user.comparePassword(req.body.password)
+    if (isMatch) {
+      const token = jwt.sign(
+        {
+          id,
+          username,
+          profileImgUrl,
+          email
+        },
+        process.env.JWT_SECRET
+      )
+      return res.status(200).json({
+        id,
+        username,
+        profileImgUrl,
+        email,
+        token
+      })
+    } else {
+      return next({
+        status: 400,
+        message: 'Invalid Email/Password.'
+      })
+    }
+  } catch (e) {
+    return next({ status: 400, message: 'Invalid Email/Password.' })
+  }
+}
 
 /**
  * Login required midddleware
@@ -10,20 +85,24 @@ const debug = require('debug')('auth')
  * @param {*} next express next middleware
  * @prop {String} req.headers.authorization jwt auth token if undefined it throws new Guest error
  */
-const getRole = function (req, res, next) {
+const getRole = async function (req, res, next) {
   try {
     if (req.headers.authorization === undefined) throw new Error('Guest')
-    const token = req.headers.authorization.split(' ')[1]
-    jwt.verify(token, process.env.SECRET_KEY, function (err, decoded) {
+    const token = req.headers.authorization.split(' ')[1] // Seperate Bearer from the token
+    debug('authorization completed')
+    const payload = jwt.verify(token, process.env.JWT_SECRET, function (err, decoded) {
       if (err) throw err
       if (decoded) {
-        req.role = decoded.role
-        next()
+        return decoded
       } else {
         // the token is not correct
         return next({ status: 401, message: 'Please Log In First' })
       }
     })
+    const foundUser = await findUser(payload) // .role it returns undefined
+    req.role = foundUser.role
+    if (!foundUser) throw new Error('not found role')
+    next()
   } catch (e) {
     if (e.message === 'Guest') {
       req.role = { name: e.message, level: 0 }
@@ -71,4 +150,4 @@ const applyRoles = function (req, res, next) {
   }
 }
 
-module.exports = { getRole, applyRoles }
+module.exports = { signin, signup, getRole, applyRoles }
