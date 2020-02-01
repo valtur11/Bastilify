@@ -15,3 +15,4 @@ mongoose.connection.on('error', err => {
 module.exports.Product = require('./product')
 module.exports.Category = require('./category')
 module.exports.User = require('./user')
+module.exports.Order = require('./order')

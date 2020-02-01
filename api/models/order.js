@@ -9,7 +9,7 @@ const customAddressSchema = {
   address1: { type: String, required: true },
   address2: { type: String },
   city: { type: String, required: true },
-  company: null,
+  company: { type: String, default: null },
   country: { type: String, required: true },
   first_name: { type: String, required: true },
   last_name: { type: String, required: true },
@@ -48,7 +48,7 @@ const orderSchema = Schema({
   number: { type: Number, required: true }, // order number
   email: { type: String, required: true },
   phone: { type: String, required: true },
-  financial_status: { default: 'no' },
+  financial_status: { type: String, default: 'no' },
   billing_address: { ...customAddressSchema },
   shipping_address: { ...customAddressSchema },
   fulfillment_status: { type: String } // ,
