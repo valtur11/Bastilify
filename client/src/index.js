@@ -11,8 +11,7 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 library.add(fab, faPhone);
 
-const rootNode = document.querySelector('#root')
-ReactDOM.render(<App />, rootNode)
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

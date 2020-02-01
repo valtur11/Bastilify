@@ -1,29 +1,107 @@
 import React from 'react'
 import './Products.scss'
 import './responsive.css'
+import axios from 'axios'
 
-const Products = ({ products, selectProduct, history }) => {
-  const handlePurchase = prod => () => {
-    selectProduct(prod)
-    history.push('/checkout')
+class Products extends React.Component { 
+
+  _isMounted = false;
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      products: []
+    }
   }
 
-  return products.map(prod => (
-    <div className="product-positioning">
-      <div className="product" key={prod.id}>
-        <section>
-          <h2>{prod.name}</h2>
-          <p>{prod.desc}</p>
-          <h3>{'$' + prod.price}</h3>
-          <button type="button" onClick={handlePurchase(prod)}>
-            PURCHASE
-          </button>
-        </section>
-        <img src={prod.img} alt={prod.name} />
-      </div>
-    </div>
+  handleOrder(obj) {
+    axios.post('https://caa6b3fc-b83d-4a1c-9053-154fea75a2e9.mock.pstmn.io/api/orders')
+    .then(response => this.setState({products: response.data}))
+    .catch(error => console.log(error))
+  }
 
-  ))
+  componentDidMount() {
+    this._isMounted = true;
+
+    axios.get('https://010dfc69-4095-4590-9977-9e177c1aaf2a.mock.pstmn.io/api/products')
+    .then(response => {
+      if (this._isMounted) {
+        this.setState({
+          products: response.data
+        })
+      }
+    })
+    .catch(error => console.log(error))
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+
+  render() {
+
+    const defaultImg = 'https://cdn.pixabay.com/photo/2017/10/16/12/00/wood-fibre-boards-2857073_960_720.jpg'
+
+    /*
+    if (this.state.products.map.imageLinks[0] = "NoImagePicture") {
+      // eslint-disable-next-line no-unused-expressions
+      <img src={defaultImg} />
+    }
+    */
+  /*
+  const Products = ({ products, history }) => {
+    const handlePurchase = prod => () => {
+      history.push('/checkout')
+    }
+  }
+  */
+
+ return this.state.products.map(prod => (
+  <div className="product-positioning">
+    <div className="product">
+      <section>
+
+            <h2>{prod.content[0].title}</h2>
+
+          
+            <p>{prod.content[0].shortDescription}</p>
+        
+          
+            <h3>{prod.price.currency}</h3>
+
+          
+            <h3>{prod.price.value}</h3>
+                      
+        <button type="button" onClick={this.handleOrder}>
+          PURCHASE
+        </button>
+      </section>
+
+        <img id="img-products" src={defaultImg} />
+
+    </div>
+  </div>    
+))
+
+  /*
+    return this.products.map(prod => (
+      <div className="product-positioning">
+        <div className="product" key={prod.id}>
+          <section>
+            <h2>{prod.content[0]}</h2>
+            <p>{prod.desc}</p>
+            <h3>{'$' + prod.price}</h3>
+            <button type="button" onClick={this.handleOrder(prod)}>
+              PURCHASE
+            </button>
+          </section>
+          <img src={prod.img} alt={prod.name} />
+        </div>
+      </div>
+    ))
+    */
+    }
 }
 
 export default Products
