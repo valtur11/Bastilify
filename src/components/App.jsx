@@ -3,7 +3,6 @@ import { Router, Route, Switch } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 import Products from './Products'
 import Checkout from './Checkout'
-import { products } from '../products'
 import Navbar from '../Navbar'
 import ContainerTop from '../ContainerTop'
 import Footer from '../Footer'
@@ -26,7 +25,6 @@ const App = () => {
           path="/"
           render={() => (
             <Products
-              products={products}
               selectProduct={setSelectedProduct}
               history={history}
             />
