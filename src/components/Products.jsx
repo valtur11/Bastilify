@@ -12,10 +12,11 @@ class Products extends React.Component {
     this.state = {
       products: []
     }
+    this.url = 'https://bastilify-api.herokuapp.com'
   }
 
   handleOrder(obj) {
-    axios.post('https://caa6b3fc-b83d-4a1c-9053-154fea75a2e9.mock.pstmn.io/api/orders')
+    axios.post(`${this.url}/api/orders`)
     .then(response => this.setState({products: response.data}))
     .catch(error => console.log(error))
   }
@@ -23,7 +24,7 @@ class Products extends React.Component {
   componentDidMount() {
     this._isMounted = true;
 
-    axios.get('https://010dfc69-4095-4590-9977-9e177c1aaf2a.mock.pstmn.io/api/products')
+    axios.get(`${this.url}/api/products`)
     .then(response => {
       if (this._isMounted) {
         this.setState({
