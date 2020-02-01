@@ -1,11 +1,7 @@
 {
-	"root": "/build",
-	"routes": {
-		"/**": "index.js"
-	},
-	"proxies": {
-		"/api": {
-			"origin": "https://bastilify-client.herokuapp.com/api"
-		}
-	}
+  "root": "build/",
+  "routes": {
+    "/**": "index.html"
+  },
+  "https_only": true
 }
