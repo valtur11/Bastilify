@@ -81,7 +81,7 @@ class Navbar extends React.Component {
                 <a href="#" className="nav-link"> Parts </a>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link"> Accessories </a>
+                <a href="https://bastilify-admin.herokuapp.com/" className="nav-link"> Admin panel </a>
               </li>
             </ul>
           </div>

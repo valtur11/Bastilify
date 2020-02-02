@@ -1,3 +1,4 @@
 api/node_modules/
 docs
 api/config/.env
+client/node_modules
