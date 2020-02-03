@@ -15,10 +15,10 @@ class Products extends React.Component {
     this.url = 'https://bastilify-api.herokuapp.com'
   }
 
-  handleOrder(obj) {
-    axios.post(`${this.url}/api/orders`)
+  handleOrder(url, obj) {
+    axios.post(`${url}/api/orders`)
     .then(response => this.setState({products: response.data}))
-    .catch(error => console.log(error))
+    .catch(error => console.log(error.message))
   }
 
   componentDidMount() {
@@ -79,7 +79,7 @@ class Products extends React.Component {
         </button>
       </section>
 
-        <img id="img-products" src={defaultImg} />
+        <img id="img-products" src={defaultImg} alt={prod.content[0].title} />
 
     </div>
   </div>    
