@@ -15,10 +15,10 @@ class Products extends React.Component {
     this.url = 'https://bastilify-api.herokuapp.com'
   }
 
-  handleOrder(obj) {
-    axios.post(`${this.url}/api/orders`)
+  handleOrder(url, obj) {
+    axios.post(`${url}/api/orders`)
     .then(response => this.setState({products: response.data}))
-    .catch(error => console.log(error))
+    .catch(error => console.log(error.message))
   }
 
   componentDidMount() {
@@ -42,7 +42,7 @@ class Products extends React.Component {
 
   render() {
 
-    const defaultImg = 'https://cdn.pixabay.com/photo/2017/10/16/12/00/wood-fibre-boards-2857073_960_720.jpg'
+    const defaultImg = 'https://i.pinimg.com/originals/23/6e/88/236e881c6fa2a21a2312ec9cd3415d67.png'
 
     /*
     if (this.state.products.map.imageLinks[0] = "NoImagePicture") {
@@ -79,7 +79,7 @@ class Products extends React.Component {
         </button>
       </section>
 
-        <img id="img-products" src={defaultImg} />
+        <img id="img-products" src={defaultImg} alt={prod.content[0].title} />
 
     </div>
   </div>    
