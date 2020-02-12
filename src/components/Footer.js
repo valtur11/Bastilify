@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 
-class Navbar extends Component {
+class Footer extends Component {
   render () {
     return (
       <div>
-        <h2>Navbar</h2>
+        <h4>Footer</h4>
       </div>
     )
   }
 }
 
-export default Navbar
+export default Footer

@@ -1,10 +1,28 @@
 import React, { Component } from 'react'
+import ProductsList from './ProductsList'
+import axios from 'axios'
 
 class Homepage extends Component {
+  constructor (props) {
+    super(props)
+    this.state = { err: null, products: [] }
+  }
+
+  componentDidMount () {
+    this.fetchProducts()
+  }
+
+  fetchProducts () {
+    axios.get('http://localhost:8081/api/products')
+      .then(res => this.setState({ products: res.data }))
+      .catch(err => this.setState({ err: err }))
+  }
+
   render () {
     return (
       <div>
-        <h1> Bastilify admin panel</h1>
+        <h2> Bastilify admin panel</h2>
+        <ProductsList products={this.state.products} />
       </div>
     )
   }

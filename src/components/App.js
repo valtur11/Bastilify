@@ -3,15 +3,15 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import './App.css'
 import Navbar from './Navbar'
 import Main from './Main'
+import Footer from './Footer'
 
 class App extends Component {
   render () {
     return (
       <Router>
-        <div className='onboarding'>
-          <Navbar />
-          <Main />
-        </div>
+        <Navbar />
+        <Main />
+        <Footer />
       </Router>
     )
   }
