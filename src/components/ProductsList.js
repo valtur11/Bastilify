@@ -27,7 +27,7 @@ class ProductsList extends Component {
               </Link>
               <Button> <Icon name='delete' /> </Button>
             </Item.Meta>
-            <Item.Extra>Extra</Item.Extra>
+            <Item.Extra>{val.price.value} {val.price.currency}</Item.Extra>
           </Item.Content>
         </Item>
       )
