@@ -130,7 +130,7 @@ const applyRoles = function (req, res, next) {
     fs.readFile('./config/roles.json', 'utf8', async (err, data) => {
       const d = JSON.parse(data)
       if (err) throw err
-      const foundRole = d.find(val => val.actions.find(action => action[0].toUpperCase() === req.method && action[1] === req.originalUrl) !== undefined)
+      const foundRole = d.find(val => val.actions.find(action => action[0].toUpperCase() === req.method && action[1] === (req.baseUrl + req.path)) !== undefined)
       if (foundRole) {
         if (foundRole.level <= req.role.level) {
           next()

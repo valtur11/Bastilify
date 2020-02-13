@@ -12,7 +12,9 @@ const debug = require('debug')('products')
  */
 async function getProducts (req, res, next) {
   try {
-    const r = await retrieveProducts()
+    debug(req.query.id)
+    const filter = (req.query.id) ? { _id: req.query.id } : {}
+    const r = await retrieveProducts(filter)
     debug('done')
     return res.status(200).json(r)
   } catch (err) {
