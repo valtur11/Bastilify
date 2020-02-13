@@ -1,4 +1,4 @@
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 900px) {  
     .product {
       display: flex;
       flex-direction: column;
@@ -6,4 +6,9 @@
       height: fit-content;
       grid-template-columns: 50% 50%;
     }
+    #img-products{     
+    height: 100px;
+    width: 175px;
+    } 
+      
   }
