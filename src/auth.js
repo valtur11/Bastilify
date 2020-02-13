@@ -29,7 +29,7 @@ function logout () {
 function authUser (type, userData) {
   // wrap our thunk in a promise so we can wait for the API call
   return new Promise((resolve, reject) => {
-    return apiCall('post', `/api/auth/${type}`, userData)
+    return apiCall('post', `https://bastilify-api/api/auth/${type}`, userData)
       .then(({ token, ...user }) => {
         localStorage.setItem('jwtToken', token) //eslint-disable-line
         setAuthorizationToken(token)

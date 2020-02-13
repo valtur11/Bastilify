@@ -4,16 +4,28 @@ import axios from 'axios'
 class newProductForm extends Component {
   constructor (props) {
     super(props)
-    this.state = { title: '', shortDescription: '', fullDescription: '', category: '', price: '' }
+    this.state = { title: '', shortDescription: '', fullDescription: '', category: '', price: '', categories: [] }
   }
-  
+
   componentDidMount () {
-    axios.get('')
+    axios.get('https://bastilify-api/api/categories')
+      .then(res => this.setState({ categories: res.data }))
+      .catch(err => console.log(err))
+  }
+
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  handleSubmit = e => {
+    e.preventDefault()
+    axios.post('https://bastilify-api/api/products', this.state)
   }
 
   render () {
     const { title, shortDescription, fullDescription, category, price } = this.state
     const heading = 'Sell new product. Start here.'
+    const options = (this.state.categories) ? this.state.categories.map(val => (<option key={val._id} value={this.state.category}>{val.title}</option>)) : 'Loading, please wait!'
 
     return (
       <>
@@ -44,12 +56,7 @@ class newProductForm extends Component {
               <label htmlFor='fullDescription'>Short Description</label>
               <textarea name='fullDescription' value={fullDescription} onChange={this.handleChange} />
               <label htmlFor='category'>Choose category</label>
-              <select name='category'>
-                <option value="grapefruit">Grapefruit</option>
-                <option value="lime">Lime</option>
-                <option selected value="coconut">Coconut</option>
-                <option value="mango">Mango</option>
-              </select>
+              <select name='category'>{options}</select>
 
               <button
                 type='submit'

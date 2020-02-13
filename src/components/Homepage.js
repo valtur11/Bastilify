@@ -13,7 +13,7 @@ class Homepage extends Component {
   }
 
   fetchProducts () {
-    axios.get('http://localhost:8081/api/products')
+    axios.get('https://bastilify-api/api/products')
       .then(res => this.setState({ products: res.data }))
       .catch(err => this.setState({ err: err }))
   }

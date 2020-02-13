@@ -4,6 +4,7 @@ import Homepage from './Homepage'
 import ProductDetails from './ProductDetails'
 import AuthForm from './AuthForm'
 import { authUser } from '../auth'
+import newProductForm from './newProductForm'
 
 const Main = props => {
   return (
@@ -46,6 +47,7 @@ const Main = props => {
           }}
         />
         <Route path='/products/laptops/:id' component={ProductDetails} />
+        <Route path='/products/new' component={newProductForm} />
       </Switch>
     </div>
   )
