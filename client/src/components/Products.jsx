@@ -1,5 +1,4 @@
 import React from 'react'
-import './Products.scss'
 import './responsive.css'
 import axios from 'axios'
 
