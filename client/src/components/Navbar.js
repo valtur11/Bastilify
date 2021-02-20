@@ -23,7 +23,7 @@ class Navbar extends React.Component {
         return(
             <div>
               <div className={styles.navbar}>
-                <Link className={styles.alogo} href="/"><div className={styles.logo}>Bastilify</div></Link>
+                <Link to="/" className={styles.alogo}><div className={styles.logo}>Bastilify</div></Link>
                 <div className={styles.navlinks} id="nav">
                     <FontAwesomeIcon onClick={closeNav} className={styles.times} icon="times" />
                     <Link to="/" className={styles.a} ><div className={styles.links}>Home</div></Link>
