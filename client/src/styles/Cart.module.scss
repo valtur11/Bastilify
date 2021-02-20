@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+.allincart {
+    margin: 75px auto;
+
+    .cart {
+        display: flex;
+        align-items: center;
+        width: 80%;
+        margin: 0 auto;
+        justify-content: space-evenly;
+    
+        .img {
+            max-width: 12.5%;
+        }
+
+        .title {
+            font-family: 'RocknRoll One', sans-serif;
+            font-size: 22px;
+            letter-spacing: 1px;
+        }
+    
+        .toggle {
+            display: flex;
+            align-items: center;
+
+            .quantity {
+                font-family: 'Open Sans', sans-serif;
+                font-size: 17px;
+            }
+
+            .icon {
+                margin: auto 15px;
+                font-size: 20px;
+                cursor: pointer;
+            }
+        }
+
+        .total {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 17px;
+        }
+
+        .button {
+            background-color: #E08E45;
+            text-transform: uppercase;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: bold;
+            border: none;
+            border-radius: 3px;
+            color: white;
+            width: 130px;
+            height: 35px;
+        }
+    }
+}
