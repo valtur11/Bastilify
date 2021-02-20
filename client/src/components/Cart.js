@@ -34,6 +34,7 @@ class Cart extends React.Component {
                         </div>
                         <div className={styles.total}><b>Total:</b> {`${this.props.total} ${el.price.currency}`}</div>
                         <Link to="/form"><button className={styles.button}>Proceed</button></Link>
+                        <FontAwesomeIcon className={styles.icon} onClick={() => { this.handleRemove(el._id) }} icon="times" />
                     </div>
                     <hr style={{ width: '85%', height: 1, backgroundColor: '#282828' }} />
                 </div>

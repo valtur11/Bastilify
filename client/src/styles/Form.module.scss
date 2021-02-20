@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+.allincart {
+    margin: 40px auto;
+
+    .cart {
+        display: flex;
+        align-items: center;
+        width: 60%;
+        margin: 0 auto;
+        justify-content: space-evenly !important;
+    
+        .img {
+            max-width: 17.5%;
+        }
+
+        .title {
+            font-family: 'RocknRoll One', sans-serif;
+            font-size: 22px;
+            letter-spacing: 1px;
+        }
+
+        .quantity {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 17px;
+        }
+
+        .total {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 17px;
+        }
+
+        .icon {
+            margin: auto 15px;
+            font-size: 25px;
+            cursor: pointer;
+        }
+    }
+}
+
+.wrapper {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+
+    .formwrapper {
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 40px;
+      border-radius: 10px;
+      background-color: whitesmoke;
+
+      .formtitle {
+        text-align: center;
+        width: 100%;
+        margin-bottom: 15px;
+        font-size: 25px;
+        color: #E08E45;
+        font-weight: bold;
+        font-family: 'RocknRoll One', sans-serif;
+        text-transform: uppercase;
+      }
+
+      form {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+
+        .firstName, .lastName, .email, .tel, .address {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .firstName, .lastName {
+            width: 49%;           
+        }
+
+        .firstName {
+            margin-right: 1%;
+        }      
+
+        .lastName {
+            margin-left: 1%;
+        }
+
+        .email, .tel, .address {
+            width: 100%;
+        }
+
+        label {
+            font-size: 1em;
+            margin-bottom: 0.25em;
+        }
+
+        input {
+            padding: 10px 10px;
+            border-radius: 5px;
+            outline: none;
+            height: 45px;
+            border: 1.5px solid #cfcfcf;
+            &::placeholder {
+                font-size: 1.2em;
+                font-weight: lighter;
+                color: #999;
+            }
+            &:focus {
+                font-size: 1em;
+                font-family: 'Open Sans', sans-serif;
+            }
+        }
+      }
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .cart {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+
+        .img {
+            max-width: 80% !important;
+        }
+
+        .toggle {
+            margin: 20px auto !important;
+        }
+
+        .total {
+            margin: 15px auto;
+        }
+    }
+
+    .hr {
+        width: 70% !important;
+    }
+}

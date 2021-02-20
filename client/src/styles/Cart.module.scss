@@ -53,5 +53,35 @@
             width: 130px;
             height: 35px;
         }
+
+        .icon {
+            margin: auto 15px;
+            font-size: 25px;
+            cursor: pointer;
+        }
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .cart {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+
+        .img {
+            max-width: 60% !important;
+        }
+
+        .toggle {
+            margin: 20px auto;
+        }
+
+        .total {
+            margin: 10px auto;
+        }
+
+        .button {
+            margin: 15px auto;
+        }
     }
 }
