@@ -26,12 +26,15 @@ class Navbar extends React.Component {
                 <Link className={styles.alogo} href="/"><div className={styles.logo}>Bastilify</div></Link>
                 <div className={styles.navlinks} id="nav">
                     <FontAwesomeIcon onClick={closeNav} className={styles.times} icon="times" />
-                    <Link className={styles.a} href="/"><div className={styles.links}>Home</div></Link>
-                    <Link className={styles.a} href="/products"><div className={styles.links}>Products</div></Link>
-                    <Link className={styles.a} href="/test"><div className={styles.links}>Test</div></Link>
-                    <Link className={styles.a} href="/test"><div className={styles.links}>Test</div></Link>
+                    <Link to="/" className={styles.a} ><div className={styles.links}>Home</div></Link>
+                    <Link to="/products" className={styles.a} ><div className={styles.links}>Products</div></Link>
+                    <Link to="/test" className={styles.a} ><div className={styles.links}>Test</div></Link>
+                    <a href="https://bastilify-admin.herokuapp.com/" className={styles.a}><div className={styles.links}>Admin panel</div></a>
                 </div>
-                <FontAwesomeIcon onClick={navSlide} className={styles.burger} icon="bars" />
+                <div className={styles.righticons}>
+                  <FontAwesomeIcon className={styles.cart} icon="shopping-cart" />
+                  <FontAwesomeIcon onClick={navSlide} className={styles.burger} icon="bars" />
+                </div>
               </div>
             </div>
         )

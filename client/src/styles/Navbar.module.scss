@@ -25,11 +25,22 @@ body {
         cursor: pointer;
     }
 
-    .burger {
-        font-size: 30px;
-        color: #E08E45;
-        margin: auto 40px;
-        cursor: pointer;
+    .righticons {
+        align-items: center;
+        display: flex;
+
+        .cart {
+            font-size: 25px;
+            color: #E08E45;
+            cursor: pointer;
+        }
+
+        .burger {
+            font-size: 30px;
+            color: #E08E45;
+            margin: auto 40px auto 25px;
+            cursor: pointer;
+        }
     }
 
     .navlinks {
