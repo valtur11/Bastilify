@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital@1&display=swap');
 
 body {
-    transition: margin-right 1.5s;
+    transition: margin-right 0.75s;
 }
 
 .navbar {
@@ -57,7 +57,7 @@ body {
         right: 0;
         background-color: #282828;
         padding-top: 10px;
-        transition: 1.5s;
+        transition: 0.75s;
 
         .a {
             text-decoration: none;
@@ -89,6 +89,7 @@ body {
         bottom: 0;
         position: fixed;
         width: 100%;
+        background-color: whitesmoke;
         .navlinks {
             display: flex;
             flex-direction: column-reverse;

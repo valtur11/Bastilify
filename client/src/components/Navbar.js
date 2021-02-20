@@ -11,7 +11,7 @@ class Navbar extends React.Component {
         nav.style.width = '250px';
         const main = document.getElementsByTagName('body')[0];
         main.style.marginRight = '250px';
-        if(window.innerWidth < 660){
+        if(window.innerWidth < 1000){
             main.style.marginRight = '0';
         }
       };
