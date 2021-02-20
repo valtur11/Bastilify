@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital@1&display=swap');
+
+body {
+    transition: margin-right 1.5s;
+}
+
+.navbar {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .alogo {
+        text-decoration: none;
+        color: #E08E45;
+    }
+
+    .logo {
+        text-transform: uppercase;
+        font-family: 'RocknRoll One', sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        margin: auto 40px;
+        cursor: pointer;
+    }
+
+    .burger {
+        font-size: 30px;
+        color: #E08E45;
+        margin: auto 40px;
+        cursor: pointer;
+    }
+
+    .navlinks {
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        color: whitesmoke;
+        align-items: center;
+        height: 100%;
+        width: 0;
+        overflow-x: hidden;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        background-color: #282828;
+        padding-top: 10px;
+        transition: 1.5s;
+
+        .a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .links {
+            font-family: 'Alegreya Sans SC', sans-serif;
+            font-size: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin: 65px auto;
+            cursor: pointer;
+        }
+
+        .times {
+            font-size: 30px;
+            color: whitesmoke;
+            margin: 30px auto;
+            cursor: pointer;
+        }
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .navbar {
+        bottom: 0;
+        position: fixed;
+        width: 100%;
+        .navlinks {
+            display: flex;
+            flex-direction: column-reverse;
+            .times {
+                padding-bottom: 20px;
+            }
+        }
+    }
+}
