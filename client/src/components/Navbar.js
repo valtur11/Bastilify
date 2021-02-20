@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React from 'react';
 import styles from '../styles/Navbar.module.scss';
 import { Link } from 'react-router-dom';
@@ -29,7 +30,7 @@ class Navbar extends React.Component {
                     <Link to="/" className={styles.a} ><div className={styles.links}>Home</div></Link>
                     <Link to="/products" className={styles.a} ><div className={styles.links}>Products</div></Link>
                     <Link to="/test" className={styles.a} ><div className={styles.links}>Test</div></Link>
-                    <a href="https://bastilify-admin.herokuapp.com/" className={styles.a}><div className={styles.links}>Admin panel</div></a>
+                    <a href="https://bastilify-admin.herokuapp.com/" target="_blank" className={styles.a}><div className={styles.links}>Admin panel</div></a>
                 </div>
                 <div className={styles.righticons}>
                   <FontAwesomeIcon className={styles.cart} icon="shopping-cart" />
