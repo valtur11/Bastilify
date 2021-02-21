@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+.footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: 40px;
+    background-color: #282828;
+
+    .text {
+        font-family: 'Open Sans', sans-serif;
+        color: white;
+        text-align: center;
+        line-height: 35px;
+        font-size: 18px;
+        vertical-align: middle;
+        font-weight: bold;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .footer {
+        display: none;
+    }
+}

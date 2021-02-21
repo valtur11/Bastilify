@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Navbar from './components/Navbar.js';
+import Footer from './components/Footer.js';
 import MainPage from './components/MainPage.js';
 import Products from './components/Products.js';
 import Cart from './components/Cart.js';
@@ -20,6 +21,7 @@ const App = () => {
                 <Route exact path="/404" component={PageNotFound} />
                 <Redirect to="/404" />
             </Switch>
+            <Footer />
         </Router>
       </div>
     )
