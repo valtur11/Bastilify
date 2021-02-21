@@ -34,7 +34,8 @@ class SignUp extends React.Component {
             data: data,
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            withCredentials: true
         })
         .then(res => {
             console.log(res.data);
