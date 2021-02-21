@@ -6,6 +6,8 @@ import Home from './components/Home.js';
 import Products from './components/Products.js';
 import Cart from './components/Cart.js';
 import Form from './components/Form.js';
+import Login from './components/Login.js';
+import SignUp from './components/SignUp.js';
 import PageNotFound from './components/PageNotFound.js';
 
 const App = () => {
@@ -18,6 +20,8 @@ const App = () => {
                 <Route exact path="/products" component={Products} />
                 <Route exact path="/cart" component={Cart} />
                 <Route exact path="/form" component={Form} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/signup" component={SignUp} />
                 <Route exact path="/404" component={PageNotFound} />
                 <Redirect to="/404" />
             </Switch>

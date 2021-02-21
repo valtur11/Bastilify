@@ -33,8 +33,8 @@ class Navbar extends React.Component {
                     <a href="https://bastilify-admin.herokuapp.com/" target="_blank" className={styles.a}><div className={styles.links}>Admin panel</div></a>
                 </div>
                 <div className={styles.righticons}>
-                  <div className={styles.login}>Log In</div>
-                  <div className={styles.signup}>Sign Up</div>
+                  <Link to="/login" className={styles.a}><div className={styles.login}>Log In</div></Link>
+                  <Link to="/signup" className={styles.a}><div className={styles.signup}>Sign Up</div></Link>
                   <Link to="/cart"><FontAwesomeIcon className={styles.cart} icon="shopping-cart" /></Link>
                   <FontAwesomeIcon onClick={navSlide} className={styles.burger} icon="bars" />
                 </div>
