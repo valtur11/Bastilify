@@ -28,7 +28,14 @@ class Form extends React.Component {
             line_items: this.props.products
         }
 
-        await axios.post('https://bastilify-api.herokuapp.com/api/orders', data, { headers: { 'Content-Type': 'application/json' } })
+        await axios.request({
+            method: 'POST',
+            url: 'https://bastilify-api.herokuapp.com/api/orders',
+            data: data,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
         .then(res => {
             console.log(res.data);
             if(res.data){

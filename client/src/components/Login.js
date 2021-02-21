@@ -1,40 +1,66 @@
 import React from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import styles from '../styles/Login.module.scss';
 
 class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: ''
+        }
+    }
 
     handleChange = (e) => {
         e.preventDefault();
         const { name, value } = e.target;
 
         this.setState({ [name]: value });
+    };
+
+    handleSubmit = async(e) => {
+        e.preventDefault();
+
+        const data = {
+            email: this.state.email,
+            password: this.state.password
+        }
+
+        await axios.request({
+            method: 'POST',
+            url: 'https://bastilify-api.herokuapp.com/api/auth/signin',
+            data: data,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => {
+            console.log(res.data);
+            if(res.data) {
+                window.location.assign("/")
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        });
     }
 
     render() {
+        const { email, password } = this.state;
         return(
             <div>
                 <div className={styles.wrapper}>
                     <div className={styles.formwrapper}>
                         <div className={styles.formtitle}>Bastilify Login</div>
-                        <form>
-                            <div className={styles.username}>
-                                <label htmlFor="username">Username: </label>
-                                <input
-                                    name="username"
-                                    type="text"
-                                    onChange={this.handleChange}
-                                    placeholder="Username"
-                                    minLength="3" 
-                                    required >
-                                </input>            
-                            </div>
+                        <form onSubmit={this.handleSubmit}>
                             <div className={styles.email}>
                                 <label htmlFor="email">Email: </label>
                                 <input
                                     name="email"
                                     type="email"
                                     onChange={this.handleChange}
+                                    value={email}
                                     placeholder="Email"
                                     minLength="3" 
                                     required >
@@ -46,6 +72,7 @@ class Login extends React.Component {
                                     name="password"
                                     type="password"
                                     onChange={this.handleChange}
+                                    value={password}
                                     placeholder="Password" 
                                     required >
                                 </input>            

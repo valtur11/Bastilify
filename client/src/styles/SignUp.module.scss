@@ -30,14 +30,14 @@
             display: flex;
             flex-wrap: wrap;
 
-            .email, .password {
+            .username, .email, .password {
                 display: flex;
                 flex-direction: column;
                 margin-bottom: 15px;
                 font-family: 'Open Sans', sans-serif;
             }
 
-            .email, .password {
+            .username, .email, .password {
                 width: 100%;
             }
 
