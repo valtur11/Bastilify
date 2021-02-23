@@ -9,9 +9,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './styles/index.scss';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faTimes, faShoppingCart, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes, faShoppingCart, faChevronUp, faChevronDown, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-library.add(fab, faBars, faTimes, faShoppingCart, faChevronUp, faChevronDown);
+library.add(fab, faBars, faTimes, faShoppingCart, faChevronUp, faChevronDown, faUserCircle);
 
 ReactDOM.render(
     <Provider store={store}>
