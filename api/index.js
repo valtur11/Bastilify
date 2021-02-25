@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 8081
 
 // Apply all /api routes
 app.use('/api', routes)
-app.set('json spaces', 4);
+app.set('json spaces', 4)
 
 // Start the server
 app.listen(PORT, function () {

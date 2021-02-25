@@ -17,6 +17,7 @@ async function signup (req, res, next) {
     }
     const { id, username, profileImgUrl, email } = user
     debug(id, username, profileImgUrl)
+    const maxAge = 1 * 24 * 60 * 60;
     const token = jwt.sign(
       {
         id,
@@ -24,8 +25,12 @@ async function signup (req, res, next) {
         profileImgUrl,
         email
       },
-      process.env.JWT_SECRET
+      process.env.JWT_SECRET,
+      { 
+        expiresIn: maxAge 
+      }
     )
+    res.cookie('jwt', token, { maxAge: maxAge * 1000, httpOnly: true });
     return res.status(201).json({
       id,
       username,
@@ -51,6 +56,7 @@ async function signin (req, res, next) {
     const { id, username, profileImgUrl, email } = user
     const isMatch = user.comparePassword(req.body.password)
     if (isMatch) {
+      const maxAge = 1 * 24 * 60 * 60;
       const token = jwt.sign(
         {
           id,
@@ -58,8 +64,11 @@ async function signin (req, res, next) {
           profileImgUrl,
           email
         },
-        process.env.JWT_SECRET
-      )
+        process.env.JWT_SECRET,
+        {
+          expiresIn: maxAge
+        })
+        res.cookie('jwt', token, { maxAge: maxAge * 1000, httpOnly: true });
       return res.status(200).json({
         id,
         username,
@@ -76,6 +85,12 @@ async function signin (req, res, next) {
   } catch (e) {
     return next({ status: 400, message: 'Invalid Email/Password.' })
   }
+}
+
+const logout = async(req, res, next) => {
+  res.cookie('jwt', '', { maxAge: 1 });
+  res.redirect('https://bastilify.herokuapp.com');
+  next();
 }
 
 /**
@@ -150,4 +165,4 @@ const applyRoles = function (req, res, next) {
   }
 }
 
-module.exports = { signin, signup, getRole, applyRoles }
+module.exports = { signin, signup, logout, getRole, applyRoles }
