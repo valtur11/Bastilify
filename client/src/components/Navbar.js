@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from 'react';
 import styles from '../styles/Navbar.module.scss';
+import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -15,18 +16,18 @@ class Navbar extends React.Component {
   render(){
     
     const renderButtons = () => {
-      if(this.state.isLogged === false) {
+      if(Cookies.get('name') === 'jwt') {
         return (
           <div className={styles.righticons}>
-            <Link to="/login" className={styles.a}><div className={styles.login}>Log In</div></Link>
-            <Link to="/signup" className={styles.a}><div className={styles.signup}>Sign Up</div></Link>
+            <a href="https://bastilify-api.herokuapp.com/api/auth/logout" className={styles.a}><div className={styles.login}>Log Out</div></a>
+            <Link to="/account"><FontAwesomeIcon className={styles.user} icon="user-circle" /></Link>
           </div>
         )
       } else {
         return (
           <div className={styles.righticons}>
-            <a href="https://bastilify-api.herokuapp.com/api/auth/logout" className={styles.a}><div className={styles.login}>Log Out</div></a>
-            <Link to="/account"><FontAwesomeIcon className={styles.user} icon="user-circle" /></Link>
+            <Link to="/login" className={styles.a}><div className={styles.login}>Log In</div></Link>
+            <Link to="/signup" className={styles.a}><div className={styles.signup}>Sign Up</div></Link>
           </div>
         )
       }
