@@ -7,7 +7,8 @@
         ["Get", "/api/categories"],
         ["Get", "/api/products/:id"],
         ["Post", "/api/auth/signup"],
-        ["Post", "/api/auth/signin"]
+        ["Post", "/api/auth/signin"],
+        ["Get", "/api/auth/logout"]
       ]
   },
   {

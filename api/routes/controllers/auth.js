@@ -30,7 +30,7 @@ async function signup (req, res, next) {
         expiresIn: maxAge 
       }
     )
-    res.cookie('jwt', token, { maxAge: maxAge * 1000, httpOnly: true });
+    res.cookie('jwt', token, { maxAge: maxAge * 1000 });
     return res.status(201).json({
       id,
       username,
@@ -68,7 +68,7 @@ async function signin (req, res, next) {
         {
           expiresIn: maxAge
         })
-        res.cookie('jwt', token, { maxAge: maxAge * 1000, httpOnly: true });
+        res.cookie('jwt', token, { maxAge: maxAge * 1000 });
       return res.status(200).json({
         id,
         username,
@@ -87,10 +87,9 @@ async function signin (req, res, next) {
   }
 }
 
-const logout = async(req, res, next) => {
+const logout = (req, res) => {
   res.cookie('jwt', '', { maxAge: 1 });
-  res.redirect('https://bastilify.herokuapp.com');
-  next();
+  res.redirect('http://localhost:3000');
 }
 
 /**
@@ -108,6 +107,7 @@ const getRole = async function (req, res, next) {
     const payload = jwt.verify(token, process.env.JWT_SECRET, function (err, decoded) {
       if (err) throw err
       if (decoded) {
+        console.log(decoded)
         return decoded
       } else {
         // the token is not correct

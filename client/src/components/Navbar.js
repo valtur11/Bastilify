@@ -1,25 +1,19 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from 'react';
 import styles from '../styles/Navbar.module.scss';
-import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+const Cookies = require('js-cookie');
 
 class Navbar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLogged: false
-    }
-  };
-
+  
   render(){
     
     const renderButtons = () => {
-      if(Cookies.get('name') === 'jwt') {
+      if(Cookies.get('jwt')) {
         return (
           <div className={styles.righticons}>
-            <a href="https://bastilify-api.herokuapp.com/api/auth/logout" className={styles.a}><div className={styles.login}>Log Out</div></a>
+            <a href="http://localhost:8081/api/auth/logout" className={styles.a}><div className={styles.login}>Log Out</div></a>
             <Link to="/account"><FontAwesomeIcon className={styles.user} icon="user-circle" /></Link>
           </div>
         )

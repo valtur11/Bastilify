@@ -17,7 +17,7 @@ const errorHandler = require('./controllers/errorHandler')
 // const rateLimit = require('express-rate-limit')({ max: 10 })
 
 // Allow this server to all origins
-apiRouter.use(cors({ credentials: true, origin: 'https://bastilify.herokuapp.com' })) // Warning: Cors MUST be enabled ONLY to whitelist array!!!
+apiRouter.use(cors({ credentials: true, origin: 'http://localhost:3000' })) // Warning: Cors MUST be enabled ONLY to whitelist array!!!
 
 // body parser for Content-Type: application/json; the default Post Content-Type is x-www-form-urlencoded
 apiRouter.use(bodyParser.json())
@@ -45,8 +45,7 @@ apiRouter.route('/categories/:_id')
 apiRouter.post('/auth/signup', signup)
 apiRouter.post('/auth/signin', signin)
 
-apiRouter.route('/auth/logout')
-  .get(logout)
+apiRouter.get('/auth/logout', logout);
 
 apiRouter.route('/orders')
   .get(getOrders)

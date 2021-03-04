@@ -39,7 +39,7 @@ class Form extends React.Component {
         .then(res => {
             console.log(res.data);
             if(res.data){
-                window.location.assign("/");
+                //window.location.assign("/");
             }
         })
         .catch(err => {
