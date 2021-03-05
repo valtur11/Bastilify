@@ -18,12 +18,11 @@ async function signup (req, res, next) {
     const { id, username, profileImgUrl, email } = user
     debug(id, username, profileImgUrl)
     const maxAge = 1 * 24 * 60 * 60;
-    const token = jwt.sign(
-      {
+    const token = jwt.sign({       
         id,
         username,
         profileImgUrl,
-        email
+        email        
       },
       process.env.JWT_SECRET,
       { 
@@ -57,8 +56,7 @@ async function signin (req, res, next) {
     const isMatch = user.comparePassword(req.body.password)
     if (isMatch) {
       const maxAge = 1 * 24 * 60 * 60;
-      const token = jwt.sign(
-        {
+      const token = jwt.sign({      
           id,
           username,
           profileImgUrl,
@@ -89,7 +87,7 @@ async function signin (req, res, next) {
 
 const logout = (req, res) => {
   res.cookie('jwt', '', { maxAge: 1 });
-  res.redirect('http://localhost:3000');
+  res.redirect('https://bastilify.herokuapp.com');
 }
 
 /**

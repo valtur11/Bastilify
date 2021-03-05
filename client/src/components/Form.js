@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import styles from '../styles/Form.module.scss';
 import img from '../assets/apple-606761_1920.jpg';
+const Cookies = require('js-cookie');
 
 class Form extends React.Component {
     constructor(props) {
@@ -12,7 +13,9 @@ class Form extends React.Component {
             lastName: '',
             email: '',
             tel: '',
-            shippingAddress: ''
+            shippingAddress: '',
+            city: '',
+            country: ''
         }
     }
 
@@ -20,21 +23,27 @@ class Form extends React.Component {
         e.preventDefault();
 
         const data = {
-            first_name: this.state.firstName,
-            last_name: this.state.lastName,
+            shipping_address: {
+                first_name: this.state.firstName,
+                last_name: this.state.lastName,
+                phone: this.state.tel,
+                address1: this.state.shippingAddress,
+                city: this.state.city,
+                country: this.state.country
+            },
             email: this.state.email,
-            phone: this.state.tel,
-            shipping_address: this.state.shippingAddress,
-            line_items: this.props.products
+            line_items: this.props.products,
+            total_cost: this.props.total
         }
 
         await axios.request({
             method: 'POST',
-            url: 'https://bastilify-api.herokuapp.com/api/orders',
-            data: data,
+            url: 'http://localhost:8081/api/orders',
             headers: {
-                'Content-Type': 'application/json'
-            }
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${Cookies.get('jwt')}`
+            },
+            data: data
         })
         .then(res => {
             console.log(res.data);
@@ -55,7 +64,8 @@ class Form extends React.Component {
     }
 
     render() {
-        const { firstName, lastName, email, tel, shippingAddress } = this.state;
+        //console.log(this.props.products);
+        const { firstName, lastName, email, tel, shippingAddress, city, country } = this.state;
 
         const products = this.props.products.map(el => {
             return (
@@ -136,6 +146,28 @@ class Form extends React.Component {
                                     onChange={this.handleChange}
                                     placeholder="Shipping address"
                                     minLength="5"
+                                    required >
+                                </input>            
+                            </div>
+                            <div className={styles.city}>
+                                <label htmlFor="city">City: </label>
+                                <input
+                                    name="city"
+                                    type="text"
+                                    value={city}
+                                    onChange={this.handleChange}
+                                    placeholder="City"
+                                    required >
+                                </input>            
+                            </div>
+                            <div className={styles.country}>
+                                <label htmlFor="country">Country: </label>
+                                <input
+                                    name="country"
+                                    type="text"
+                                    value={country}
+                                    onChange={this.handleChange}
+                                    placeholder="Country"
                                     required >
                                 </input>            
                             </div>

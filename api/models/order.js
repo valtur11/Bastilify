@@ -14,17 +14,17 @@ const customAddressSchema = {
   first_name: { type: String, required: true },
   last_name: { type: String, required: true },
   phone: { type: String, required: true },
-  province: { type: String, required: true },
-  zip: { type: String, required: true },
+  province: { type: String },
+  zip: { type: String },
   name: { type: String },
   province_code: { type: String },
   country_code: { type: String },
-  latitude: { type: String, required: true },
-  longitude: { type: String, required: true }
+  latitude: { type: String },
+  longitude: { type: String }
 }
 
 const orderSchema = Schema({
-  created_at: { type: Date, required: true },
+  created_at: { type: Date, default: null },
   closed_at: { type: Date },
   canceled_at: { type: Date, default: null },
   updated_at: { type: Date, default: null },
@@ -37,7 +37,7 @@ const orderSchema = Schema({
     session_hash: { type: String },
     user_agent: { type: String, required: true }
   },
-  processing_method: { type: String, required: true },
+  processing_method: { type: String },
   /* payment_details: {
     avs_result_code: { type: String, required: true },
     credit_card_bin: { type: String, required: true },
@@ -45,14 +45,37 @@ const orderSchema = Schema({
     credit_card_number: { type: String, required: true },
     credit_card_company: { type: String, required: true }
   }, */
-  number: { type: Number, required: true }, // order number
-  email: { type: String, required: true },
-  phone: { type: String, required: true },
+  number: { type: Number }, // order number
+  email: { type: String },
+  phone: { type: String },
   financial_status: { type: String, default: 'no' },
-  billing_address: { ...customAddressSchema },
   shipping_address: { ...customAddressSchema },
-  fulfillment_status: { type: String } // ,
-  // line_items: [{ type: Schema.Types.ObjectId, ref: 'Product', required: true }],
+  fulfillment_status: { type: String },
+  line_items: [
+    {
+      content: [
+        {
+          0: {
+            title: {
+              type: String
+            }
+          }
+        }
+      ],
+      price: {
+        currency: {
+          type: String
+        },
+        value: {
+          type: Number
+        }
+      },
+      quantityCart: {
+        type: Number
+      }
+    }
+  ],
+  total_cost: { type: Number }
   // customer: { type: Schema.Types.ObjectId, ref: 'User', required: true }
 })
 

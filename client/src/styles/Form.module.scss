@@ -68,22 +68,22 @@
         display: flex;
         flex-wrap: wrap;
 
-        .firstName, .lastName, .email, .tel, .address {
+        .firstName, .lastName, .email, .tel, .address, .city, .country {
             display: flex;
             flex-direction: column;
             margin-bottom: 15px;
             font-family: 'Open Sans', sans-serif;
         }
 
-        .firstName, .lastName {
+        .firstName, .lastName, .city, .country {
             width: 49%;           
         }
 
-        .firstName {
+        .firstName, .city {
             margin-right: 1%;
         }      
 
-        .lastName {
+        .lastName, .country {
             margin-left: 1%;
         }
 
