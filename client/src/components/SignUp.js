@@ -30,7 +30,7 @@ class SignUp extends React.Component {
 
         await axios.request({
             method: 'POST',
-            url: 'http://localhost:8081/api/auth/signin',
+            url: 'https://bastilify-api.herokuapp.com/api/auth/signup',
             data: data,
             headers: {
                 'Content-Type': 'application/json'

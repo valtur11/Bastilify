@@ -38,7 +38,7 @@ class Form extends React.Component {
 
         await axios.request({
             method: 'POST',
-            url: 'http://localhost:8081/api/orders',
+            url: 'https://bastilify-api.herokuapp.com/api/orders',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${Cookies.get('jwt')}`
@@ -48,7 +48,7 @@ class Form extends React.Component {
         .then(res => {
             console.log(res.data);
             if(res.data){
-                //window.location.assign("/");
+                window.location.assign("/");
             }
         })
         .catch(err => {

@@ -13,7 +13,7 @@ class Navbar extends React.Component {
       if(Cookies.get('jwt')) {
         return (
           <div className={styles.righticons}>
-            <a href="http://localhost:8081/api/auth/logout" className={styles.a}><div className={styles.login}>Log Out</div></a>
+            <a href="https://bastilify-api.herokuapp.com/api/auth/logout" className={styles.a}><div className={styles.login}>Log Out</div></a>
             <Link to="/account"><FontAwesomeIcon className={styles.user} icon="user-circle" /></Link>
           </div>
         )
